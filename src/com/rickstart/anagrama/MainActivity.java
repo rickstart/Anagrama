@@ -23,26 +23,37 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		final EditText edit   = (EditText)findViewById(R.id.editText1);
+		final EditText edit2   = (EditText)findViewById(R.id.editText2);
+		final EditText edit3   = (EditText)findViewById(R.id.editText3);
 		final Button button = (Button) findViewById(R.id.btncheck);
+		final Button button1 = (Button) findViewById(R.id.button1);
 		final TextView txt = (TextView) findViewById(R.id.textView1);
+		
 		
 		dic.add("amor");
 		dic.add("roma");
 		dic.add("mora");
 		dic.add("ramo");
 		dic.add("omar");
+		String dictionary="";
+		
+		for(int i=0;i<dic.size();i++)
+		{
+			dictionary=dictionary+", "+dic.get(i).toString();
+		}
+		edit2.setText(dictionary);
+		
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Perform action on click
+               
             	String aux="";
             	Vector ve= new Vector();
-            	//txt.setText(edit.getText().toString());
+            	
             	if(edit.getText().toString()!="")
             	{
             		ve=generate(edit.getText().toString());
             	}
-            	//String word="roma";
-            	//Vector ve=generate(word);
+            	
             	
             	 
                  for(int i=0;i<ve.size();i++)
@@ -57,6 +68,18 @@ public class MainActivity extends Activity {
             }
         });
 		
+        button1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+               dic.add(edit3.getText().toString());
+               
+               	String dict="";
+	       		for(int i=0;i<dic.size();i++)
+	       		{
+	       			dict=dict+", "+dic.get(i).toString();
+	       		}
+	       		edit2.setText(dict);
+	            }
+        });
 		
 	}
 
@@ -67,28 +90,11 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
-	public String anagrama(String word)
-	{
-		
-		String str="";
-		char[] charArray = new char[word.length()];
 
-		for(int i=0;i<word.length();i++)
-		{
-			charArray[i]=word.charAt(i);
-		}
-		
-		
-		return str;
-	}
 	
 	public String doAnagrama(Vector ve)
 	{
-		
-	
-		
 
-	
 	   String source="";
 	   String a1="";
 	   String a2="";
@@ -107,9 +113,7 @@ public class MainActivity extends Activity {
 	   }
 	   
 	   return source;
-		
-		
-		
+	
 	
 	}
 	
